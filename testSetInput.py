@@ -12,6 +12,10 @@ def generateTestWav():
 
     #Cmaj chord 
     sinWave = (np.sin(2 * np.pi * 130 * t) + np.sin(2 * np.pi * 262 * t) + np.sin(2 * np.pi * 330 * t) + np.sin(2 * np.pi * 392 * t))
+    #bass test
+    #sinWave = (np.sin(2*np.pi*130*t))
+
+
 
     #normalize waveform to prevent distortion
     sinWave = sinWave / np.max(np.abs(sinWave))

@@ -14,9 +14,9 @@ N = len(samples)
 #if N == 44100 * 5:
 #    print("Test wav file generated successfully with correct sample amount.")
 
-print(samplerate)
-print(samples)
-print(N)
+#print(samplerate)
+#print(samples)
+#print(N)
 
 # graph wave 
 
