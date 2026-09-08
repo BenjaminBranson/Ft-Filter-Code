@@ -11,7 +11,7 @@ def generateTestWav():
     t = np.linspace(0, 3, samplerate*3, endpoint=False)
 
     #Cmaj chord 
-    sinWave = (np.sin(2 * np.pi * 262 * t) + np.sin(2 * np.pi * 330 * t) + np.sin(2 * np.pi * 392 * t))
+    sinWave = (np.sin(2 * np.pi * 130 * t) + np.sin(2 * np.pi * 262 * t) + np.sin(2 * np.pi * 330 * t) + np.sin(2 * np.pi * 392 * t))
 
     #normalize waveform to prevent distortion
     sinWave = sinWave / np.max(np.abs(sinWave))
