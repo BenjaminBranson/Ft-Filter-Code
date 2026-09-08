@@ -26,7 +26,7 @@ def Equalizer(bM, mM, tM):
 
     plotAxis = np.linspace(0, audioInput.samplerate/2, num=audioInput.N//2+1)
     plt.figure(figsize=(10, 4))
-    plt.axis((0, 2000, 0, 25000*max(bM, mM, tM)))
+    plt.axis((0, 2000, 0, 25000))
     plt.plot(plotAxis, np.abs(numpyFFT.fourier), 'red')
     plt.xlabel('Frequency [Hz]')
     plt.ylabel('Magnitude')
@@ -37,13 +37,15 @@ def Equalizer(bM, mM, tM):
     equalizedSound = np.fft.irfft(numpyFFT.fourier)
 
     #play new sound in comparison to original sound
-    testSetInput.generateTestWav()
+    sd.play(audioInput.samples, audioInput.samplerate)
+    sd.wait()
     sd.play(equalizedSound, audioInput.samplerate)
+    sd.wait()
 
     #plot new sound
     timeAxis = np.linspace(0, audioInput.N/audioInput.samplerate, num=audioInput.N)
     plt.figure(figsize=(10, 4))
-    plt.axis((0, 0.25, -1.5, 1.5))
+    plt.axis((0, audioInput.N/audioInput.samplerate, -1.5, 1.5))
     plt.plot(timeAxis, equalizedSound, 'red')
     plt.xlabel('Time [s]')
     plt.ylabel('Amplitude')

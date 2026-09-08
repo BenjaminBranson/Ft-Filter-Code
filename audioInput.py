@@ -2,12 +2,19 @@ import numpy as np
 import scipy.io.wavfile as wav
 import testSetInput
 import matplotlib.pyplot as plt
-import file_example_WAV_1MG
+import sounddevice as sd
 
-testSetInput.generateTestWav()
+#testSetInput.generateTestWav()
 
-samplerate, samples = wav.read('test.wav')
+#samplerate, samples = wav.read('test.wav')
+samplerate, samples = wav.read('file_example_WAV_1MG.wav')
 
+#stereo to mono
+if len(samples.shape) == 2:
+    samples = np.mean(samples, axis=1)
+    samples = samples/32768
+sd.play(samples, samplerate)
+sd.wait()
 #sampleamount N
 N = len(samples)
 
@@ -23,7 +30,7 @@ N = len(samples)
 
 timeAxis = np.linspace(0, N/samplerate, num=N)
 plt.figure(figsize=(10, 4))
-plt.axis((0, 0.25, -1.5, 1.5))
+plt.axis((0, N/samplerate, -1.5, 1.5))
 plt.plot(timeAxis, samples)
 plt.xlabel('Time [s]')
 plt.ylabel('Amplitude')
