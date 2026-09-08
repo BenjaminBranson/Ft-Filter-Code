@@ -16,14 +16,15 @@ N = len(samples)
 
 print(samplerate)
 print(samples)
+print(N)
 
 # graph wave 
 
 timeAxis = np.linspace(0, N/samplerate, num=N)
 plt.figure(figsize=(10, 4))
-plt.axis((0, 0.2, -1.5, 1.5))
+plt.axis((0, 0.25, -1.5, 1.5))
 plt.plot(timeAxis, samples)
 plt.xlabel('Time [s]')
 plt.ylabel('Amplitude')
 plt.title('Waveform')
-plt.show()
+plt.show(block=False)
