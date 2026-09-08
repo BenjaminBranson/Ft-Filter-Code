@@ -8,7 +8,7 @@ def generateTestWav():
     samplerate = 44100
 
     #time
-    t = np.linspace(0, 5, samplerate*5, endpoint=False)
+    t = np.linspace(0, 3, samplerate*3, endpoint=False)
 
     #Cmaj chord 
     sinWave = (np.sin(2 * np.pi * 262 * t) + np.sin(2 * np.pi * 330 * t) + np.sin(2 * np.pi * 392 * t))

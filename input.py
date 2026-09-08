@@ -1,6 +1,7 @@
 import numpy as np
 import scipy.io.wavfile as wav
 import testSetInput
+import matplotlib.pyplot as plt
 
 testSetInput.generateTestWav()
 
@@ -15,3 +16,14 @@ N = len(samples)
 
 print(samplerate)
 print(samples)
+
+# graph wave 
+
+timeAxis = np.linspace(0, N/samplerate, num=N)
+plt.figure(figsize=(10, 4))
+plt.axis((0, 0.2, -1.5, 1.5))
+plt.plot(timeAxis, samples)
+plt.xlabel('Time [s]')
+plt.ylabel('Amplitude')
+plt.title('Waveform')
+plt.show()
