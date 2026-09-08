@@ -17,7 +17,7 @@ plt.plot(plotAxis, np.abs(fourier))
 plt.xlabel('Frequency [Hz]')
 plt.ylabel('Magnitude')
 plt.title('Frequency Spectrum')
-plt.show(block=False)
+#plt.show(block=False)
 
 #print(fourier)
 

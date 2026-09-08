@@ -7,36 +7,37 @@ import numpyFFT
 import sounddevice as sd
 
 
-bassMultiplier = int(input("Enter bass multiplier: "))
-midrangeMultiplier = int(input("Enter midrange multiplier: "))
-trebleMultiplier = int(input("Enter treble multiplier: "))
+bassMultiplier = float(input("Enter bass multiplier: "))
+midrangeMultiplier = float(input("Enter midrange multiplier: "))
+trebleMultiplier = float(input("Enter treble multiplier: "))
 
-def Equalizer(bassMultiplier, midrangeMultiplier, trebleMultiplier):
+def Equalizer(bM, mM, tM):
 
 
     for i in range(len(numpyFFT.fourier)):
     #250 defined as bass
         if numpyFFT.plotAxis[i] < 250:
-            numpyFFT.fourier[i] *= bassMultiplier
+            numpyFFT.fourier[i] *= bM
         elif 250 <= numpyFFT.plotAxis[i] < 4000:
-            numpyFFT.fourier[i] *= midrangeMultiplier
+            numpyFFT.fourier[i] *= mM
         else:
-            numpyFFT.fourier[i] *= trebleMultiplier
+            numpyFFT.fourier[i] *= tM
 
 
     plotAxis = np.linspace(0, audioInput.samplerate/2, num=audioInput.N//2+1)
     plt.figure(figsize=(10, 4))
-    plt.axis((0, 2000, 0, 25000*max(bassMultiplier, midrangeMultiplier, trebleMultiplier)))
+    plt.axis((0, 2000, 0, 25000*max(bM, mM, tM)))
     plt.plot(plotAxis, np.abs(numpyFFT.fourier), 'red')
     plt.xlabel('Frequency [Hz]')
     plt.ylabel('Magnitude')
     plt.title('EqualizedFrequency Spectrum')
-    plt.show(block=False)
+    #plt.show(block=False)
 
     #new sound
     equalizedSound = np.fft.irfft(numpyFFT.fourier)
 
-    #play new sound
+    #play new sound in comparison to original sound
+    testSetInput.generateTestWav()
     sd.play(equalizedSound, audioInput.samplerate)
 
     #plot new sound
@@ -48,3 +49,5 @@ def Equalizer(bassMultiplier, midrangeMultiplier, trebleMultiplier):
     plt.ylabel('Amplitude')
     plt.title('Equalized Sound')
     plt.show()
+
+Equalizer(bassMultiplier, midrangeMultiplier, trebleMultiplier)
