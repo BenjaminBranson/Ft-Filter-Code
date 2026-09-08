@@ -2,6 +2,7 @@ import numpy as np
 import scipy.io.wavfile as wav
 import testSetInput
 import matplotlib.pyplot as plt
+import file_example_WAV_1MG
 
 testSetInput.generateTestWav()
 
