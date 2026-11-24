@@ -13,28 +13,28 @@ trebleMultiplier = float(input("Enter treble multiplier: "))
 
 def Equalizer(bM, mM, tM):
 
-
-    for i in range(len(numpyFFT.fourier)):
+    equalizedFourierCopy = numpyFFT.fourier.copy()
+    for i in range(len(equalizedFourierCopy)):
     #250 defined as bass
         if numpyFFT.plotAxis[i] < 250:
-            numpyFFT.fourier[i] *= bM
+            equalizedFourierCopy[i] *= bM
         elif 250 <= numpyFFT.plotAxis[i] < 4000:
-            numpyFFT.fourier[i] *= mM
+            equalizedFourierCopy[i] *= mM
         else:
-            numpyFFT.fourier[i] *= tM
+            equalizedFourierCopy[i] *= tM
 
 
     plotAxis = np.linspace(0, audioInput.samplerate/2, num=audioInput.N//2+1)
     plt.figure(figsize=(10, 4))
     plt.axis((0, 2000, 0, 25000))
-    plt.plot(plotAxis, np.abs(numpyFFT.fourier), 'red')
+    plt.plot(plotAxis, np.abs(equalizedFourierCopy), 'red')
     plt.xlabel('Frequency [Hz]')
     plt.ylabel('Magnitude')
     plt.title('EqualizedFrequency Spectrum')
     #plt.show(block=False)
 
     #new sound
-    equalizedSound = np.fft.irfft(numpyFFT.fourier)
+    equalizedSound = np.fft.irfft(equalizedFourierCopy)
 
     #play new sound in comparison to original sound
     sd.play(audioInput.samples, audioInput.samplerate)

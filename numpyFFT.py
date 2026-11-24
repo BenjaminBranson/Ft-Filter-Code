@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 #fft
 fourier = np.fft.rfft(audioInput.samples)
+print(fourier)
 
 #plot fft
 
