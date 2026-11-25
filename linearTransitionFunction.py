@@ -57,11 +57,13 @@ def linearTransition():
 
     #plot linear function
     plt.figure(figsize=(10, 4))
-    plt.axis((0, 2000, 0, 25000))
+    plt.axis((0, 2000, 0, 20))
     plt.plot(numpyFFT.plotAxis, linearFunction, 'green')
     plt.xlabel('Frequency [Hz]')
     plt.ylabel('Gain')
     plt.title('Linear Transition Function')
     plt.show()
+
+    return linearFunction
 
 linearTransition()
